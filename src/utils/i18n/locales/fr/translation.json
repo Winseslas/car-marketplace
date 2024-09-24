@@ -1,0 +1,27 @@
+{
+    "pages": {
+        "indexPage": {
+            "title": "Ceci est la page d'accueil"
+        }
+    },
+    "components": {
+        "footer": {
+            "footer_welcome_message": "Bienvenue sur notre marketplace, une plateforme qui connecte vendeurs et acheteurs du monde entier. Que vous recherchiez des produits uniques, des services spécialisés ou que vous souhaitiez vendre vos propres créations, notre marketplace est là pour vous offrir une expérience fluide et sécurisée. Explorez une large gamme de catégories, profitez de promotions exclusives, et rejoignez une communauté grandissante de commerçants et de clients.",
+            "company_section_title": "Entreprise",
+            "company_about_us": "À propos de nous",
+            "company_terms_conditions": "Conditions générales",
+            "company_privacy_policy": "Politique de confidentialité",
+            "company_contact_us": "Nous contacter",
+            "blog_section_title": "Blog",
+            "blog_get_started": "Comment commencer avec notre marketplace",
+            "blog_selling_tips": "Conseils pour vendre avec succès en ligne",
+            "blog_seller_benefits": "Les avantages de notre plateforme pour les vendeurs",
+            "blog_transaction_security": "Guide pour sécuriser vos transactions",
+            "blog_see_more": "Voir plus",
+            "connect_with_us_title": "Connectez-vous avec nous",
+            "copyright": "Copyright © 2020 {{ displayYear }} - 2022 Winseslas. Tous droits réservés.",
+            "madeWithLove": "Fait avec ❤️ par Winseslas.",
+            "languageLabel": "Langue :"
+        }
+    }
+}
