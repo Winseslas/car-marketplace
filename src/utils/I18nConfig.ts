@@ -28,8 +28,8 @@ i18n
       resources,
       debug: true,
       fallbackLng: 'en',
-      saveMissing: true,
-      returnObjects: true,
+      saveMissing: false,
+      returnObjects: false,
       interpolation: {
         escapeValue: false,
       },

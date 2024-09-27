@@ -2,6 +2,25 @@
     "pages": {
         "indexPage": {
             "title": "Ceci est la page d'accueil"
+        },
+        "forgotPasswordPage": {
+            "codePlaceholder": "Entrez votre code",
+            "title": "Mot de passe oublié ?",
+            "enterEmail": "Veuillez fournir votre adresse e-mail",
+            "emailAddress": "Adresse e-mail",
+            "emailPlaceholder": "ex: john@doe.com",
+            "resetButton": "Envoyer le code de réinitialisation du mot de passe",
+            "enterNewPassword": "Entrez votre nouveau mot de passe",
+            "enterResetCode": "Entrez le code de réinitialisation du mot de passe qui a été envoyé à votre e-mail",
+            "resetPasswordButton": "Réinitialiser",
+            "resetPassword": "Réinitialiser le mot de passe",
+            "twoFactorRequired": "L'authentification à deux facteurs est requise, mais cette interface utilisateur ne la gère pas",
+            "errorMessage": "Une erreur s'est produite",
+            "emailError": "Veuillez inclure une adresse e-mail valide pour que nous puissions vous répondre",
+            "rememberPassword": "Vous vous souvenez de votre mot de passe ? ",
+            "loginHere": "Connectez-vous ici",
+            "githubTitle": "Github",
+            "viewGithub": "Voir Github"
         }
     },
     "components": {

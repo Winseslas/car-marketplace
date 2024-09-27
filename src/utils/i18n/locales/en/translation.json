@@ -2,6 +2,25 @@
     "pages": {
         "indexPage": {
             "title": "This is the index page"
+        },
+        "forgotPasswordPage": {
+            "codePlaceholder": "Enter your code",
+            "title": "Forgot your password?",
+            "enterEmail": "Please provide your email address",
+            "emailAddress": "Email address",
+            "emailPlaceholder": "ex: john@doe.com",
+            "resetButton": "Send password reset code",
+            "enterNewPassword": "Enter your new password",
+            "enterResetCode": "Enter the password reset code sent to your email",
+            "resetPasswordButton": "Reset",
+            "resetPassword": "Reset password",
+            "twoFactorRequired": "Two-factor authentication is required, but this UI doesn't handle it",
+            "errorMessage": "An error occurred",
+            "emailError": "Please include a valid email address so we can get back to you",
+            "rememberPassword": "Remember your password? ",
+            "loginHere": "Login here",
+            "githubTitle": "Github",
+            "viewGithub": "View Github"
         }
     },
     "components": {
