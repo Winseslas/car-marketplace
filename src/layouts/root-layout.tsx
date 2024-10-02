@@ -28,6 +28,7 @@ export default function RootLayout(): JSX.Element {
               routerPush={(to: string) => navigate(to)}
               routerReplace={(to: string) => navigate(to, { replace: true })}
               publishableKey={PUBLISHABLE_KEY}
+              afterSignOutUrl='/'
               localization={language === 'fr' ? frFR : enUS}
             >
               <ClerkLoaded>

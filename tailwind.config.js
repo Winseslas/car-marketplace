@@ -4,6 +4,7 @@ export default {
 	content: [
 		"./index.html",
 		"./src/**/*.{js,ts,jsx,tsx}",
+		"./node_modules/tw-elements/js/**/*.js",
 	],
 	theme: {
 		screens: {
@@ -82,6 +83,9 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		// require("tw-elements/plugin.cjs")
+	],
 }
 

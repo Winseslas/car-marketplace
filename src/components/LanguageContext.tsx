@@ -17,8 +17,10 @@ export const LanguageProvider = ({ children }: LanguageProviderProps) => {
     const [language, setLanguage] = useState<string>('en');
 
     useEffect(() => {
-        i18n.changeLanguage(language);
-        document.body.dir = i18n.dir();
+        if (i18n.isInitialized) {
+            i18n.changeLanguage(language);
+            document.body.dir = i18n.dir();
+        }
     }, [language, i18n]);
 
     const changeLanguage = (newLanguage: string) => {

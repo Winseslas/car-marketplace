@@ -26,7 +26,7 @@ i18n
     {
       lng: 'en',
       resources,
-      debug: true,
+      debug: false,
       fallbackLng: 'en',
       saveMissing: false,
       returnObjects: false,

@@ -1,7 +1,17 @@
 {
+    "siteTitle": "Car Marketplace",
+    "navigation": {
+        "home": "Home",
+        "search": "Search",
+        "new": "New",
+        "preowned": "Preowned",
+        "signIn": "Sign in",
+        "login": "Login"
+    },
     "pages": {
         "indexPage": {
-            "title": "This is the index page"
+            "title": "This is the index page",
+            "submitListing": "Submit Listing"
         },
         "forgotPasswordPage": {
             "codePlaceholder": "Enter your code",
@@ -19,7 +29,6 @@
             "emailError": "Please include a valid email address so we can get back to you",
             "rememberPassword": "Remember your password? ",
             "loginHere": "Login here",
-            "githubTitle": "Github",
             "viewGithub": "View Github"
         }
     },
@@ -42,5 +51,17 @@
             "madeWithLove": "Made with ❤️ by Winseslas.",
             "languageLabel": "Language:"
         }
+    },
+    "socialLinks": {
+        "github": "Github",
+        "facebook": "Facebook",
+        "x": "X",
+        "instagram": "Instagram",
+        "youtube": "Youtube"
+    },
+    "common": {
+        "error": "Error",
+        "errorMessage": "An error has occurred",
+        "successMessage": "Operation successful"
     }
 }

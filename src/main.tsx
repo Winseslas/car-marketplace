@@ -7,7 +7,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import "./utils/I18nConfig";
 
-
 // Import the layouts
 import RootLayout from './layouts/root-layout';
 import DashboardLayout from './layouts/dashboard-layout';

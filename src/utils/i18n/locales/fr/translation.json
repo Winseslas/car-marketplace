@@ -1,7 +1,17 @@
 {
+    "siteTitle": "Marché Automobile",
+    "navigation": {
+        "home": "Accueil",
+        "search": "Recherche",
+        "new": "Nouveau",
+        "preowned": "Occasion",
+        "signIn": "Se connecter",
+        "login": "Connexion"
+    },
     "pages": {
         "indexPage": {
-            "title": "Ceci est la page d'accueil"
+            "title": "Ceci est la page d'accueil",
+            "submitListing": "Soumettre l'annonce"
         },
         "forgotPasswordPage": {
             "codePlaceholder": "Entrez votre code",
@@ -19,7 +29,6 @@
             "emailError": "Veuillez inclure une adresse e-mail valide pour que nous puissions vous répondre",
             "rememberPassword": "Vous vous souvenez de votre mot de passe ? ",
             "loginHere": "Connectez-vous ici",
-            "githubTitle": "Github",
             "viewGithub": "Voir Github"
         }
     },
@@ -42,5 +51,17 @@
             "madeWithLove": "Fait avec ❤️ par Winseslas.",
             "languageLabel": "Langue :"
         }
+    },
+    "socialLinks": {
+        "github": "Github",
+        "facebook": "Facebook",
+        "x": "X",
+        "instagram": "Instagram",
+        "youtube": "Youtube"
+    },
+    "common": {
+        "error": "Erreur",
+        "errorMessage": "Une erreur s'est produite",
+        "successMessage": "Opération réussie"
     }
 }

@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import React, { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from './LanguageContext';
+import Flags from "country-flag-icons/react/3x2";
 
 // Define the type for the language options
 interface Language {
     code: string;
     label: string;
+    flag: React.ElementType;  // Type for the flag component
 }
 
+// List of languages with their respective labels and flags
 const languages: Language[] = [
-    { code: 'en', label: 'English' },
-    { code: 'fr', label: 'Français' },
+    { code: 'en', label: 'English', flag: Flags.GB },
+    { code: 'fr', label: 'Français', flag: Flags.FR },
 ];
 
 // Define the props for the LanguageSelector component
@@ -20,17 +24,21 @@ interface LanguageSelectorProps {
     onLanguageChange: (language: string) => void;
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({formClassName = '', labelClassName = '', selectClassName = '', onLanguageChange, }) => {
-
-    const [language, setLanguage] = useState<string>('en');
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({ formClassName = '', labelClassName = '', selectClassName = '', onLanguageChange, }) => {
+    const [, setLanguage] = useState<string>('en');
     const { t, i18n } = useTranslation();
-
+    const languageContext = useContext(LanguageContext);
+    
+    // We will directly render the selected flag based on the current language context
+    const currentLanguage = languageContext?.language || 'en';
+    const CurrentFlag = languages.find((lang) => lang.code === currentLanguage)?.flag || null;
+    
     const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLanguage = e.target.value;
         setLanguage(selectedLanguage);
         i18n.changeLanguage(selectedLanguage);
         onLanguageChange(selectedLanguage);
-        console.log(`Langue changée en: ${selectedLanguage}`);
+        // console.log(`Langue changée en: ${selectedLanguage}`);
     };
 
     useEffect(() => {
@@ -47,11 +55,12 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({formClassName = '', 
                 id="language-select"
                 name="language"
                 className={selectClassName}
-                value={language}
+                value={currentLanguage}
                 onChange={handleLanguageChange} >
                 {languages.map((lang) => (
                     <option key={lang.code} value={lang.code}>
-                        {lang.label}
+                       {lang.label}
+                       {/* {CurrentFlag && <CurrentFlag className="flag-icon me-2" />}  */}
                     </option>
                 ))}
             </select>
