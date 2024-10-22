@@ -1,0 +1,174 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "SUV",
+      "icon": "🚙"
+    },
+    {
+      "id": 2,
+      "name": "Sedan",
+      "icon": "🚗"
+    },
+    {
+      "id": 3,
+      "name": "Hatchback",
+      "icon": "🚙"
+    },
+    {
+      "id": 4,
+      "name": "Electric",
+      "icon": "🔋"
+    },
+    {
+      "id": 5,
+      "name": "Convertible",
+      "icon": "🚗"
+    },
+    {
+      "id": 6,
+      "name": "Hybrid",
+      "icon": "🔋"
+    },
+    {
+      "id": 7,
+      "name": "Coupe",
+      "icon": "🚗"
+    },
+    {
+      "id": 8,
+      "name": "Van",
+      "icon": "🚐"
+    },
+    {
+      "id": 9,
+      "name": "Truck",
+      "icon": "🚚"
+    },
+    {
+      "id": 10,
+      "name": "Motorbike",
+      "icon": "🏍️"
+    },
+    {
+      "id": 11,
+      "name": "Luxury",
+      "icon": "💎"
+    },
+    {
+      "id": 12,
+      "name": "Pickup",
+      "icon": "🛻"
+    },
+    {
+      "id": 13,
+      "name": "Off-Road",
+      "icon": "🏞️"
+    },
+    {
+      "id": 14,
+      "name": "Minivan",
+      "icon": "🚐"
+    },
+    {
+      "id": 15,
+      "name": "Compact",
+      "icon": "🚗"
+    },
+    {
+      "id": 16,
+      "name": "Sport",
+      "icon": "🏎️"
+    },
+    {
+      "id": 17,
+      "name": "Limousine",
+      "icon": "🚓"
+    },
+    {
+      "id": 18,
+      "name": "Crossover",
+      "icon": "🚙"
+    },
+    {
+      "id": 19,
+      "name": "Station Wagon",
+      "icon": "🚐"
+    },
+    {
+      "id": 20,
+      "name": "Vintage",
+      "icon": "🚘"
+    },
+    {
+      "id": 21,
+      "name": "Roadster",
+      "icon": "🚗"
+    },
+    {
+      "id": 22,
+      "name": "City Car",
+      "icon": "🚗"
+    },
+    {
+      "id": 23,
+      "name": "Performance",
+      "icon": "⚡"
+    },
+    {
+      "id": 24,
+      "name": "Taxi",
+      "icon": "🚕"
+    },
+    {
+      "id": 25,
+      "name": "Police Car",
+      "icon": "🚓"
+    },
+    {
+      "id": 26,
+      "name": "Ambulance",
+      "icon": "🚑"
+    },
+    {
+      "id": 27,
+      "name": "Fire Truck",
+      "icon": "🚒"
+    },
+    {
+      "id": 28,
+      "name": "Bicycle",
+      "icon": "🚲"
+    },
+    {
+      "id": 29,
+      "name": "Scooter",
+      "icon": "🛵"
+    },
+    {
+      "id": 30,
+      "name": "Camper Van",
+      "icon": "🚐"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "rating": 5,
+      "comment": "I rented a car for a week, everything went very well. The team is responsive and the vehicle was impeccable. I highly recommend this car rental agency!"
+    },
+    {
+      "id": 2,
+      "name": "Marie Martin",
+      "rating": 4,
+      "comment": "Service au top ! Le processus de réservation est simple et rapide. Les voitures sont bien entretenues et le personnel est très professionnel. Seul petit bémol, j'aurais aimé un peu plus de choix de véhicules."
+    },
+    {
+      "id": 3,
+      "name": "Jane Doe",
+      "rating": 5,
+      "comment": "I am really satisfied with my experience. The customer service is excellent, and the car I rented was exactly as pictured. I will certainly return for my next rental."
+    }
+  ]
+}

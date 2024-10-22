@@ -1,11 +1,14 @@
 {
-    "siteTitle": "Marché Automobile",
+    "siteTitle": "Marché",
     "navigation": {
         "home": "Accueil",
         "search": "Recherche",
         "new": "Nouveau",
         "preowned": "Occasion",
         "signIn": "Se connecter",
+        "signUp": "S'inscrire",
+        "contact": "Contact",
+        "forgotPassword": "Mot de passe oublié",
         "login": "Connexion"
     },
     "pages": {
@@ -30,6 +33,118 @@
             "rememberPassword": "Vous vous souvenez de votre mot de passe ? ",
             "loginHere": "Connectez-vous ici",
             "viewGithub": "Voir Github"
+        },
+        "profilePage": {
+            "title": "Mon compte",
+            "myListing": "Mes annonces",
+            "favorites": "Favoris",
+            "settings": "Paramètres",
+            "billing": "Facturation",
+            "table": {
+                "title": "Tableau de bord",
+                "cars": "Voiture",
+                "year": "Année",
+                "transmission": "Transmission",
+                "fuelType": "Type de carburant",
+                "price": "Prix",
+                "actions": "Actions"
+            },
+            "pagination": {
+                "showing": "Affichage",
+                "to": "à",
+                "of": "de ",
+                "results": "résultats"
+            },
+            "favoritesSection": {
+                "like": "Ajouter aux favoris",
+                "rentNow": "Louer maintenant"
+            },
+            "noCars": "Aucune voiture trouvée",
+            "noCarsExplanation": "Il semble que vous n'ayez pas encore ajouté de voitures à vos favoris.",
+            "billingSection": {
+                "title": "Facturation",
+                "subtitle": "Que ce soit pour un voyage en solo ou en groupe - nous avons la voiture qu'il vous faut.",
+                "description": "Choisissez le véhicule qui vous convient le mieux",
+                "mostPopular": "Le plus populaire",
+                "packageEconomy": {
+                    "title": "Voiture économique",
+                    "description": "Détails pour les voitures économiques",
+                    "price": "10 000 XAF / Jour",
+                    "priceButton": "Souscrire",
+                    "features": [
+                        "Kilométrage illimité",
+                        "Assurance incluse",
+                        "Service client disponible",
+                        "Garantie de remboursement"
+                    ]
+                },
+                "packageStandard": {
+                    "title": "Voiture standard",
+                    "description": "Détails pour les voitures standard",
+                    "price": "30 000 XAF / Jour",
+                    "priceButton": "Souscrire",
+                    "features": [
+                        "Kilométrage illimité",
+                        "Assurance incluse",
+                        "Service client disponible",
+                        "Garantie de remboursement"
+                    ]
+                },
+                "packagePremium": {
+                    "title": "Voiture de luxe",
+                    "description": "Détails pour les voitures de luxe",
+                    "price": "50 000 XAF / Jour",
+                    "priceButton": "Souscrire",
+                    "features": [
+                        "Kilométrage illimité",
+                        "Assurance incluse",
+                        "Service client disponible",
+                        "Garantie de remboursement"
+                    ]
+                }
+            },
+            "createCar": {
+                "title": "Créer une annonce",
+                "carForm": {
+                    "generalInfo": "Informations Générales",
+                    "carName": "Nom de la voiture",
+                    "originalPrice": "Prix d'origine",
+                    "sellingPrice": "Prix de vente",
+                    "category": "Catégorie",
+                    "condition": "État",
+                    "year": "Année",
+                    "driverType": "Type de conducteur",
+                    "transmission": "Transmission",
+                    "fuelType": "Type de carburant",
+                    "vehicleDetails": "Détails du Véhicule",
+                    "make": "Marque",
+                    "model": "Modèle",
+                    "featuresSection": "Caractéristiques",
+                    "features": {
+                        "gps": "GPS",
+                        "airConditioning": "Climatisation",
+                        "bluetooth": "Bluetooth"
+                    },
+                    "descriptionSection": "Description",
+                    "description": "Description",
+                    "acceptButton": "J'accepte",
+                    "declineButton": "Refuser",
+                    "placeholders": {
+                        "carName": "Nom de la voiture",
+                        "originalPrice": "Prix d'origine",
+                        "sellingPrice": "Prix de vente",
+                        "category": "Choisir une catégorie",
+                        "condition": "Choisir un état",
+                        "year": "Année",
+                        "driverType": "Choisir un type de conducteur",
+                        "transmission": "Choisir une transmission",
+                        "fuelType": "Choisir un type de carburant",
+                        "make": "Choisir une marque",
+                        "model": "Choisir un modèle",
+                        "description": "Écrire une description..."
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -50,6 +165,48 @@
             "copyright": "Copyright © 2020 {{ displayYear }} - 2022 Winseslas. Tous droits réservés.",
             "madeWithLove": "Fait avec ❤️ par Winseslas.",
             "languageLabel": "Langue :"
+        },
+        "hero": {
+            "title": "Trouvez votre voiture idéale",
+            "subtitle": "Explorez des milliers de voitures de vendeurs fiables",
+            "searchPlaceholder": "Rechercher par marque, modèle ou mot clé",
+            "searchButton": "Rechercher",
+            "featuredCategories": "Catégories en vedette",
+            "newCars": "Nouvelles voitures",
+            "usedCars": "Voitures d'occasion",
+            "electricVehicles": "Véhicules électriques",
+            "luxuryCars": "Voitures de luxe",
+            "viewAllListings": "Voir toutes les annonces"
+        },
+        "search": {
+            "placeholderCars": "Voitures",
+            "placeholderCarMakes": "Marques de voitures",
+            "placeholderPrice": "Prix"
+        },
+        "categories": {
+            "title": "Catégories",
+            "previous": "Précédent",
+            "next": "Suivant"
+        },
+        "popularCars": {
+            "title": "Voitures les plus recherchées",
+            "viewDetails": "Voir les détails"
+        },
+        "testimonials": {
+            "title": "Lire les avis fiables de nos clients",
+            "name": "Nom",
+            "rating": "Note",
+            "comment": "Commentaire"
+        },
+        "infoSection": {
+            "title": "Louez votre voiture en toute sérénité avec nous !",
+            "image": {
+                "altText": "Voiture de location"
+            },
+            "content": {
+                "paragraph1": "Chez nous, louer une voiture est simple, rapide et sécurisé. Que vous partiez en vacances, en voyage d'affaires ou que vous ayez juste besoin d'un véhicule temporaire, nous avons ce qu'il vous faut.",
+                "paragraph2": "Notre large gamme de véhicules, des citadines économiques aux SUV spacieux, est entretenue régulièrement pour garantir une expérience de conduite optimale. Réservez votre voiture en quelques clics et profitez d'un service client disponible pour vous accompagner tout au long de votre location."
+            }
         }
     },
     "socialLinks": {

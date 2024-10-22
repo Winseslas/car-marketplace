@@ -1,74 +1,94 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 import { UserButton, useUser } from '@clerk/clerk-react';
 import { LanguageContext } from './LanguageContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import LanguageSelector from './LanguageSelector';
 
 
 function Header() {
   const { t } = useTranslation();
-  const { user, isSignedIn } = useUser();
+  const { isSignedIn } = useUser();
 
   const languageContext = useContext(LanguageContext);
-
-  
   const handleLanguageChange = languageContext?.changeLanguage ?? (() => { });
+
+  // State to manage menu visibility
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Toggle menu visibility
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <div>
-      <header
-        className="inset-x-0 top-0 z-30 mx-auto w-full max-w-screen-md border border-gray-100 bg-white/80 py-3 shadow backdrop-blur-lg md:top-6 rounded-3xl lg:max-w-screen-lg mb-5">
-        <div className="px-4">
-          <div className="flex items-center justify-between">
-            <div className="flex shrink-0">
-              <Link aria-current="page" className="flex items-center" to="/">
-                <img className="h-7 w-auto" src="/7932097.svg" alt={t('siteTitle')} />
-                <p className="sr-only">
-                  {t('siteTitle')}
-                </p>
-              </Link>
-            </div>
-            <div className="hidden md:flex md:items-center md:justify-center md:gap-5">
-              <Link aria-current="page"
-                className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                to='/'>{t('navigation.home')}</Link>
-              <Link className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                to='/'>{t('navigation.search')}</Link>
-              <Link className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                to='/'>{t('navigation.new')}</Link>
-              <Link className="inline-block rounded-lg px-2 py-1 text-sm font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                to='/'>{t('navigation.preowned')}</Link>
-            </div>
+      <nav className="bg-white border-b border-gray-200 dark:bg-gray-900">
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          <Link aria-current="page" className="flex items-center space-x-3 rtl:space-x-reverse" to="/">
+            <img src="/7932097.svg" alt={t('siteTitle')} className="h-8" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+          </Link>
 
-            <div className="flex items-center justify-end gap-3">
-
-              {isSignedIn ? (
-                <div className="flex items-center">
-                  <UserButton />
-                  <Link to='/' className="ml-3 inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" >&nbsp;{t('pages.indexPage.submitListing')}</Link>
+          <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            {isSignedIn ? (
+              <div className="flex items-center">
+                <div className='mr-1 mt-2'>
+                <UserButton />
                 </div>
-              ) : (
-                <Link to='/' className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" >&nbsp;{t('pages.indexPage.submitListing')}</Link>
-              )}
+                <div className='hidden md:block mt-2 mr-1 xs:mr-1 ml-1'>
+                  <LanguageSelector
+                    formClassName="mt-0"
+                    labelClassName="sr-only"
+                    selectClassName="border border-gray-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onLanguageChange={handleLanguageChange} />
+                </div>
+                <button type="button" className="mt-1 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{t('pages.indexPage.submitListing')}</button>
+              </div>
+            ) : (
+              <>
+                <div className='hidden md:block mt-1 mr-1 sm:mr-0 md:mr-1'>
+                  <LanguageSelector
+                    formClassName="mt-0"
+                    labelClassName="sr-only"
+                    selectClassName="border border-gray-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    onLanguageChange={handleLanguageChange} />
+                </div>
 
-              {/* <Link className="hidden items-center justify-center rounded-xl bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow ring-1 ring-inset ring-gray-300 transition-all duration-150 hover:bg-gray-50 sm:inline-flex"
-                to="/">{t('navigation.signIn')}</Link> */}
+                <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{t('pages.indexPage.submitListing')}</button>
+              </>
+            )}
 
-              {/* <Link className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow transition-all duration-150 hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-                to="/">{t('navigation.login')}</Link> */}
+            <button onClick={toggleMenu} data-collapse-toggle="navbar-cta" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded={isMenuOpen}>
+              <span className="sr-only">Open main menu</span>
+              <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+              </svg>
+            </button>
+          </div>
 
-            <LanguageSelector
-              formClassName="mt-0"
-              labelClassName="sr-only"
-              selectClassName="border border-gray-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-              onLanguageChange={handleLanguageChange} />
-            </div>
-
+          <div className={`items-center justify-between ${isMenuOpen ? 'block' : 'hidden'} w-full md:flex md:w-auto md:order-1`} id="navbar-cta">
+            <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <li>
+                <Link to="/" className={`block py-2 px-3 md:p-0 ${isActive('/') ? 'text-blue-700' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`} aria-current="page">{t('navigation.home')}</Link>
+              </li>
+              <li>
+                <Link to="/search" className={`block py-2 px-3 md:p-0 ${isActive('/search') ? 'text-blue-700' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>{t('navigation.search')}</Link>
+              </li>
+              <li>
+                <Link to="/new" className={`block py-2 px-3 md:p-0 ${isActive('/new') ? 'text-blue-700' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>{t('navigation.new')}</Link>
+              </li>
+              <li>
+                <Link to="/preowned" className={`block py-2 px-3 md:p-0 ${isActive('/preowned') ? 'text-blue-700' : 'text-gray-900'} rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}>{t('navigation.preowned')}</Link>
+              </li>
+            </ul>
           </div>
         </div>
-      </header>
+      </nav>
     </div>
   )
 }

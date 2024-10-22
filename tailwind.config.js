@@ -5,6 +5,7 @@ export default {
 		"./index.html",
 		"./src/**/*.{js,ts,jsx,tsx}",
 		"./node_modules/tw-elements/js/**/*.js",
+		"./node_modules/flowbite/**/*.js",
 	],
 	theme: {
 		screens: {
@@ -85,6 +86,41 @@ export default {
 	},
 	plugins: [
 		require("tailwindcss-animate"),
+		function ({ addUtilities }) {
+			const newUtilities = {
+				/* Firefox scrollbar style */
+				'.scrollbar-thin': {
+					scrollbarWidth: 'thin',
+					scrollbarColor: '#0d6efd #f0f0f0', /* Thumb and track colors */
+				},
+				/* WebKit (Chrome, Safari) scrollbar style */
+				'.scrollbar-webkit': {
+					'&::-webkit-scrollbar': {
+						width: '8px',
+					},
+					'&::-webkit-scrollbar-track': {
+						background: '#f0f0f0',
+						borderRadius: '10px',
+					},
+					'&::-webkit-scrollbar-thumb': {
+						backgroundColor: '#0d6efd',
+						borderRadius: '10px',
+						border: '2px solid #d3dce6',
+					},
+					'&::-webkit-scrollbar-button': {
+						display: 'none',
+					},
+					'&::-webkit-scrollbar-corner': {
+						backgroundColor: 'transparent', /* Set the corner to be transparent */
+						border: 'none',                 /* Remove any border */
+					},
+				},
+			};
+			addUtilities(newUtilities, ["responsive", "hover"]);
+		},
+		require('flowbite/plugin')({
+			datatables: true,
+		}),
 		// require("tw-elements/plugin.cjs")
 	],
 }

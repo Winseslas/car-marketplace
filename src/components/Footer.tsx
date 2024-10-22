@@ -14,7 +14,7 @@ function Footer() {
     return (
         <div>
             <footer>
-                <div className="bg-gray-800 py-4 text-gray-400">
+                <div className="bg-transparent py-4 text-black-400">
                     <div className="container px-4 mx-4">
                         <div className="-mx-4 flex flex-wrap justify-between">
                             <div className="px-4 my-4 w-full xl:w-1/4">
@@ -92,7 +92,7 @@ function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-700 py-4 text-gray-100">
+                <div className="bg-transparent py-4 text-black-100">
                     <div className="container px-8">
                         <div className="-mx-4 flex flex-wrap justify-between">
                             <div className="px-4 my-4 w-full text-center sm:w-auto">
@@ -105,7 +105,7 @@ function Footer() {
                                 <LanguageSelector
                                     formClassName=""
                                     labelClassName="mr-2 text-white"
-                                    selectClassName="bg-gray-200 border border-gray-300 text-gray-900 text-sm text-sm rounded-lg focus:ring-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-1 px-3 rounded"
+                                    selectClassName="bg-gray-200 border border-gray-300 text-gray-900 text-sm text-sm rounded-lg focus:ring-blue-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 py-1 px-3 rounded ml-1"
                                     onLanguageChange={handleLanguageChange}
                                 />
                             </div>
