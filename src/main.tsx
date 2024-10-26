@@ -23,7 +23,7 @@ import Profile from './pages/user/profile';
 import MyListing from "./components/MyListing";
 import Favorites from "./components/Favorites";
 import Billing from "./components/Billing";
-import CreateCar from "./components/CreateCar";
+// import CreateCar from "./components/CreateCar";
 
 type RootComponentProps = object
 
@@ -68,7 +68,7 @@ class RootComponent extends Component<object, RootComponentState> {
                   </div>)
                 },
                 { path: 'billing', element: <Billing /> },
-                { path: 'create-car', element: <CreateCar /> },
+                // { path: 'create-car', element: <CreateCar /> },
               ],
             },
             {

@@ -31,12 +31,12 @@ class ErrorMessage extends Component<ErrorMessageProps> {
     highlightedText: 'Oops!',
   };
 
-/**
- * Renders an error message with optional highlighted text.
- * The message is styled to be displayed in red, with a bold font for the highlighted text.
- * 
- * @returns A JSX element containing the formatted error message.
- */
+  /**
+   * Renders an error message with optional highlighted text.
+   * The message is styled to be displayed in red, with a bold font for the highlighted text.
+   * 
+   * @returns A JSX element containing the formatted error message.
+   */
   render() {
     const { message, highlightedText } = this.props;
     return (
@@ -47,38 +47,38 @@ class ErrorMessage extends Component<ErrorMessageProps> {
   }
 }
 
-class FormField extends Component<InputProps> {
+class CustomFormField extends Component<InputProps> {
   static defaultProps = {
     hasAddon: false,
     isRequired: false,
   };
 
-/**
- * Renders a form field based on the provided props. If the field type is 'select',
- * it renders a dropdown select element with options. Otherwise, it renders a standard
- * input field. Both field types include a label and optional error message display.
- * 
- * Props:
- * - label: The text label for the form field.
- * - type: The type of the input (e.g., 'text', 'select').
- * - name: The name attribute for the input element.
- * - value: The current value of the input.
- * - onBlur: Function to call when the input loses focus.
- * - onChange: Function to call when the input value changes.
- * - touched: Boolean indicating if the input has been interacted with.
- * - error: Boolean indicating if there's an error with the input value.
- * - placeholder: Placeholder text for the input.
- * - hasAddon: Boolean indicating if the input includes addon content.
- * - addonContent: Content to display as an addon inside the input field.
- * - inputClassName: CSS class for styling the input element.
- * - labelClassName: CSS class for styling the label element.
- * - isRequired: Boolean indicating if the input is required.
- * - errorMessage: Message to display when there's an error.
- * - options: Array of options for the select field type.
- * 
- * Returns a JSX element representing the form field, including any necessary
- * error messages, required indicators, and placeholder text.
- */
+  /**
+   * Renders a form field based on the provided props. If the field type is 'select',
+   * it renders a dropdown select element with options. Otherwise, it renders a standard
+   * input field. Both field types include a label and optional error message display.
+   * 
+   * Props:
+   * - label: The text label for the form field.
+   * - type: The type of the input (e.g., 'text', 'select').
+   * - name: The name attribute for the input element.
+   * - value: The current value of the input.
+   * - onBlur: Function to call when the input loses focus.
+   * - onChange: Function to call when the input value changes.
+   * - touched: Boolean indicating if the input has been interacted with.
+   * - error: Boolean indicating if there's an error with the input value.
+   * - placeholder: Placeholder text for the input.
+   * - hasAddon: Boolean indicating if the input includes addon content.
+   * - addonContent: Content to display as an addon inside the input field.
+   * - inputClassName: CSS class for styling the input element.
+   * - labelClassName: CSS class for styling the label element.
+   * - isRequired: Boolean indicating if the input is required.
+   * - errorMessage: Message to display when there's an error.
+   * - options: Array of options for the select field type.
+   * 
+   * Returns a JSX element representing the form field, including any necessary
+   * error messages, required indicators, and placeholder text.
+   */
   render() {
     const {
       label,
@@ -100,19 +100,27 @@ class FormField extends Component<InputProps> {
     } = this.props;
 
     if (type === 'select') {
+      const focusSelectTrigger = () => {
+        const triggerElement = document.getElementById(`trigger-${this.props.name}`);
+        if (triggerElement) {
+          triggerElement.click();
+        }
+      };
+
       return (
         <>
-          <label htmlFor={name} className={labelClassName}>
+          <label htmlFor={`trigger-${name}`} className={labelClassName} onClick={focusSelectTrigger}>
             {label}
             {isRequired && <span style={{ color: 'red' }}>&nbsp;*</span>}
           </label>
+        
           <select
-            id={name}
+            id={`trigger-${name}`}
             name={name}
             value={value || ''}
             onChange={onChange}
             onBlur={onBlur}
-            className={inputClassName}
+            className={`${inputClassName} max-h-[10rem] overflow-y-auto`}
             required={isRequired}
           >
             <option value="">{placeholder}</option>
@@ -156,4 +164,4 @@ class FormField extends Component<InputProps> {
   }
 }
 
-export default FormField;
+export default CustomFormField;

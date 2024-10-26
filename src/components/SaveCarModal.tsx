@@ -3,7 +3,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import React, { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import { Car, getCarsFromLocalStorage, readAllCategoriesToJson, Category, Brand } from '../shared/datas';
-import FormField from './FormField';
+import CustomFormField from './CustomFormField';
 import { useTranslation } from "react-i18next";
 
 
@@ -11,6 +11,7 @@ export interface SelectProps {
     id: number;
     name: string;
 }
+
 
 function SaveCarModal() {
     const { t } = useTranslation();
@@ -27,15 +28,15 @@ function SaveCarModal() {
         const fetchCars = () => {
             const storedCars = getCarsFromLocalStorage();
             if (storedCars && storedCars.length > 0) {
-                setCars(storedCars.slice(0, 5));
+                setCars(storedCars);
                 const uniqueBrands = Array.from(new Set(storedCars.map(car => car.brand.name)))
                     .map(name => storedCars.find(car => car.brand.name === name)?.brand)
-                    .filter((brand): brand is Brand => brand !== undefined).slice(0, 5);
+                    .filter((brand): brand is Brand => brand !== undefined);
                 setBrands(uniqueBrands);
 
                 const uniqueModels = Array.from(new Set(storedCars.map(car => car.model)))
                     .map(name => storedCars.find(car => car.model === name)?.model)
-                    .filter((model): model is string => model !== undefined).slice(0, 5);
+                    .filter((model): model is string => model !== undefined);
                 setModels(uniqueModels.map((model, index) => ({ id: index, name: model })));
             }
         };
@@ -52,7 +53,7 @@ function SaveCarModal() {
             if (categories.length === 0) {
                 const data = await readAllCategoriesToJson();
                 const sortedData = data.sort((a, b) => a.name.localeCompare(b.name));
-                setCategories(sortedData.slice(0, 5));
+                setCategories(sortedData);
             }
         };
 
@@ -145,8 +146,12 @@ function SaveCarModal() {
 
 
     const handleUsernameBlur = () => {
-        setUsernameTouched(true);
-        setUsernameError(username.length > 0 && username.length < 3);
+        try {
+            setUsernameTouched(true);
+            setUsernameError(username === null || username === undefined || (username.length > 0 && username.length < 3));
+        } catch (error) {
+            console.error('Error handling username blur:', error);
+        }
     };
 
     const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -155,8 +160,8 @@ function SaveCarModal() {
 
     const handlePriceBlur = () => {
         setPriceTouched(true);
-        const priceValue = parseFloat(price);
-        const sellingPriceValue = parseFloat(sellingPrice);
+        const priceValue = parseFloat(price || '0');
+        const sellingPriceValue = parseFloat(sellingPrice || '0');
         setPriceError(price.length > 0 && (priceValue <= 0 || priceValue < sellingPriceValue));
     };
 
@@ -166,9 +171,9 @@ function SaveCarModal() {
 
     const handleSellingPriceBlur = () => {
         setSellingPriceTouched(true);
-        const priceValue = parseFloat(price);
-        const sellingPriceValue = parseFloat(sellingPrice);
-        setSellingPriceError(sellingPrice.length > 0 && (sellingPriceValue <= 0 || sellingPriceValue > priceValue));
+        const priceValue = parseFloat(price || '0');
+        const sellingPriceValue = parseFloat(sellingPrice || '0');
+        setSellingPriceError(sellingPrice.length > 0 && (isNaN(sellingPriceValue) || sellingPriceValue <= 0 || sellingPriceValue > priceValue));
     };
 
     const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -176,8 +181,12 @@ function SaveCarModal() {
     };
 
     const handleCategoryBlur = () => {
-        setCategoryTouched(true);
-        setCategoryError(category === '');
+        try {
+            setCategoryTouched(true);
+            setCategoryError(category === null || category === '');
+        } catch (error) {
+            console.error('Error handling category blur:', error);
+        }
     };
 
     const handleConditionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -185,8 +194,12 @@ function SaveCarModal() {
     };
 
     const handleConditionBlur = () => {
-        setConditionTouched(true);
-        setConditionError(condition === '');
+        try {
+            setConditionTouched(true);
+            setConditionError(condition === null || condition === '');
+        } catch (error) {
+            console.error('Error handling condition blur:', error);
+        }
     };
 
     const handleYearChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -194,8 +207,12 @@ function SaveCarModal() {
     };
 
     const handleYearBlur = () => {
-        setYearTouched(true);
-        setYearError(year.length > 0 && (parseInt(year) < 1886 || parseInt(year) > new Date().getFullYear()));
+        try {
+            setYearTouched(true);
+            setYearError(year.length > 0 && (parseInt(year, 10) < 1886 || parseInt(year, 10) > new Date().getFullYear()));
+        } catch (error) {
+            console.error('Error handling year blur:', error);
+        }
     };
 
     const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -204,7 +221,11 @@ function SaveCarModal() {
 
     const handleDescriptionBlur = () => {
         setDescriptionTouched(true);
-        setDescriptionError(description.length > 0 && description.length < 10);
+        try {
+            setDescriptionError(description.length > 0 && description.length < 10);
+        } catch (error) {
+            console.error('Error handling description blur:', error);
+        }
     };
 
     const handleFuelTypeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -212,8 +233,12 @@ function SaveCarModal() {
     };
 
     const handleFuelTypeBlur = () => {
-        setFuelTypeTouched(true);
-        setFuelTypeError(fuelType === '');
+        try {
+            setFuelTypeTouched(true);
+            setFuelTypeError(!fuelType);
+        } catch (error) {
+            console.error('Error handling fuel type blur:', error);
+        }
     };
 
     const handleTransmissionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -221,6 +246,10 @@ function SaveCarModal() {
     };
 
     const handleTransmissionBlur = () => {
+        if (transmission === null || transmission === undefined) {
+            console.error('Error handling transmission blur: transmission is null or undefined');
+            return;
+        }
         setTransmissionTouched(true);
         setTransmissionError(transmission === '');
     };
@@ -230,6 +259,10 @@ function SaveCarModal() {
     };
 
     const handleDriveTypeBlur = () => {
+        if (driveType === null || driveType === undefined) {
+            console.error('Error handling drive type blur: driveType is null or undefined');
+            return;
+        }
         setDriveTypeTouched(true);
         setDriveTypeError(driveType === '');
     };
@@ -248,7 +281,17 @@ function SaveCarModal() {
         return error ? 'bg-red-50 border-red-500 text-red-900' : 'bg-green-50 border-green-500 text-green-900';
     };
 
-    const isFormValid = () => {
+    /**
+     * Checks if the form data is valid according to the following rules:
+     * - username must be at least 3 characters
+     * - price must be a positive number
+     * - selling price must be less than the price
+     * - category, condition, drive type, transmission, and fuel type must be non-empty strings
+     * - year must be a number between 1886 and the current year
+     * - description must be at least 20 characters
+     * @returns true if the form data is valid, false otherwise
+     */
+    const isFormValid = (): boolean => {
         return (
             username.length >= 3 &&
             price.length > 0 && parseFloat(price) > 0 &&
@@ -268,7 +311,12 @@ function SaveCarModal() {
         // Par exemple, vous pouvez vérifier si tous les champs sont valides avant de soumettre
     };
 
-    const resetForm = () => {
+    /**
+     * Resets the form to its initial state.
+     * This function is called when the "Cancel" button is clicked.
+     * It resets all the fields to empty strings and sets the touched state of each field to false.
+     */
+    const resetForm = (): void => {
         setUsername('');
         setPrice('');
         setSellingPrice('');
@@ -294,11 +342,21 @@ function SaveCarModal() {
         setDescriptionTouched(false);
     };
 
-    const handleReset = () => {
-        if (hasFormBeenTouched) {
-            resetForm();
-        } else {
-            toggleModal();
+    /**
+     * Handles the "Cancel" button click event.
+     * If the form has been touched at least once, resets the form to its initial state.
+     * Otherwise, toggles the modal open/closed state.
+     * @returns {void}
+     */
+    const handleReset = (): void => {
+        try {
+            if (typeof hasFormBeenTouched !== 'undefined' && hasFormBeenTouched) {
+                resetForm();
+            } else {
+                toggleModal();
+            }
+        } catch (error) {
+            console.error('Error handling reset:', error);
         }
     };
 
@@ -334,7 +392,7 @@ function SaveCarModal() {
                 <>
                     <div className='flex items-start space-x-4'>
                         <div className="mb-2 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.carName')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.carName')}
                                 type="text"
                                 name="username"
                                 value={username}
@@ -352,7 +410,7 @@ function SaveCarModal() {
 
                     <div className='flex items-start space-x-4'>
                         <div className="mb-2 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.originalPrice')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.originalPrice')}
                                 type="number"
                                 name="originalPrice"
                                 value={price}
@@ -369,7 +427,7 @@ function SaveCarModal() {
                                 isRequired />
                         </div>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.sellingPrice')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.sellingPrice')}
                                 type="number"
                                 name="sellingPrice"
                                 value={sellingPrice}
@@ -389,7 +447,7 @@ function SaveCarModal() {
 
                     <div className='flex items-start space-x-4'>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.category')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.category')}
                                 type="select"
                                 name="category"
                                 value={category}
@@ -398,14 +456,14 @@ function SaveCarModal() {
                                 touched={categoryTouched}
                                 onBlur={handleCategoryBlur}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.category')}
-                                inputClassName={`${getInputClass(category, categoryError, categoryTouched)} border text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
+                                inputClassName={`${getInputClass(category, categoryError, categoryTouched)} border text-sm rounded-lg focus:outline-none w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
                                 options={categories}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 errorMessage='Please select a category!'
                                 isRequired />
                         </div>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.condition')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.condition')}
                                 type="select"
                                 name="condition"
                                 value={condition}
@@ -413,9 +471,8 @@ function SaveCarModal() {
                                 error={conditionError}
                                 touched={conditionTouched}
                                 onBlur={handleConditionBlur}
-                                // placeholder="Choose a condition"
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.condition')}
-                                inputClassName={`${getInputClass(condition, conditionError, conditionTouched)} border text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
+                                inputClassName={`${getInputClass(condition, conditionError, conditionTouched)} border text-sm rounded-lg focus:outline-none w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
                                 options={conditions}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 errorMessage='Please select a condition!'
@@ -425,7 +482,7 @@ function SaveCarModal() {
 
                     <div className='flex items-start space-x-4'>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.year')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.year')}
                                 type="number"
                                 name="year"
                                 value={year}
@@ -441,7 +498,7 @@ function SaveCarModal() {
                         </div>
 
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.driverType')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.driverType')}
                                 type="select"
                                 name="driveType"
                                 value={driveType}
@@ -450,7 +507,7 @@ function SaveCarModal() {
                                 touched={driveTypeTouched}
                                 onBlur={handleDriveTypeBlur}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.driverType')}
-                                inputClassName={`${getInputClass(driveType, driveTypeError, driveTypeTouched)} border text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
+                                inputClassName={`${getInputClass(driveType, driveTypeError, driveTypeTouched)} border text-sm rounded-lg focus:outline-none w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
                                 options={driveTypes}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 errorMessage='Please select a driver type!'
@@ -460,7 +517,7 @@ function SaveCarModal() {
 
                     <div className='flex items-start space-x-4'>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.transmission')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.transmission')}
                                 type="select"
                                 name="transmission"
                                 value={transmission}
@@ -469,7 +526,7 @@ function SaveCarModal() {
                                 touched={transmissionTouched}
                                 onBlur={handleTransmissionBlur}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.transmission')}
-                                inputClassName={`${getInputClass(transmission, transmissionError, transmissionTouched)} border text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
+                                inputClassName={`${getInputClass(transmission, transmissionError, transmissionTouched)} border text-sm rounded-lg focus:outline-none w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
                                 options={transmissions}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 errorMessage='Please select a transmission!'
@@ -477,7 +534,7 @@ function SaveCarModal() {
                         </div>
 
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.fuelType')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.fuelType')}
                                 type="select"
                                 name="fuelType"
                                 value={fuelType}
@@ -486,7 +543,7 @@ function SaveCarModal() {
                                 touched={fuelTypeTouched}
                                 onBlur={handleFuelTypeBlur}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.fuelType')}
-                                inputClassName={`${getInputClass(fuelType, fuelTypeError, fuelTypeTouched)} border text-sm rounded-lg focus:outline-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
+                                inputClassName={`${getInputClass(fuelType, fuelTypeError, fuelTypeTouched)} border text-sm rounded-lg focus:outline-none w-full p-2.5 dark:bg-gray-700 dark:border-gray-600`}
                                 options={fuelTypes}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                 errorMessage='Please select a fuel type!'
@@ -505,24 +562,24 @@ function SaveCarModal() {
                 <>
                     <div className='flex items-start space-x-4'>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.make')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.make')}
                                 type="select"
                                 name="make"
                                 value={make}
                                 onChange={(e) => setMake(e.target.value)}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
-                                inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={brands}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" />
                         </div>
                         <div className="mb-5 w-1/2">
-                            <FormField label={t('pages.profilePage.createCar.carForm.model')}
+                            <CustomFormField label={t('pages.profilePage.createCar.carForm.model')}
                                 type="select"
                                 name="model"
                                 value={model}
                                 onChange={(e) => setModel(e.target.value)}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
-                                inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={models}
                                 labelClassName="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300" />
                         </div>
@@ -581,6 +638,12 @@ function SaveCarModal() {
     ];
 
     const [openIndex, setOpenIndex] = useState<number | null>(1);
+    
+    /**
+     * Toggle the open state of the accordion at the given index.
+     *
+     * @param index - The index of the accordion to toggle.
+     */
     const toggleAccordion = (index: number) => {
         setOpenIndex(openIndex === index ? null : index);
     };
