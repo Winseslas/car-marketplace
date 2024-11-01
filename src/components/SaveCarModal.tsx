@@ -140,8 +140,8 @@ function SaveCarModal() {
         setIsModalOpen(!isModalOpen);
     };
 
-    const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setUsername(e.target.value);
+    const handleUsernameChange = (value: string) => {
+        setUsername(value);
     };
 
 
@@ -154,8 +154,8 @@ function SaveCarModal() {
         }
     };
 
-    const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setPrice(e.target.value);
+    const handlePriceChange = (value: string) => {
+        setPrice(value);
     };
 
     const handlePriceBlur = () => {
@@ -165,8 +165,8 @@ function SaveCarModal() {
         setPriceError(price.length > 0 && (priceValue <= 0 || priceValue < sellingPriceValue));
     };
 
-    const handleSellingPriceChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setSellingPrice(e.target.value);
+    const handleSellingPriceChange = (value: string) => {
+        setSellingPrice(value);
     };
 
     const handleSellingPriceBlur = () => {
@@ -176,8 +176,8 @@ function SaveCarModal() {
         setSellingPriceError(sellingPrice.length > 0 && (isNaN(sellingPriceValue) || sellingPriceValue <= 0 || sellingPriceValue > priceValue));
     };
 
-    const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setCategory(e.target.value);
+    const handleCategoryChange = (value: string) => {
+        setCategory(value);
     };
 
     const handleCategoryBlur = () => {
@@ -189,9 +189,9 @@ function SaveCarModal() {
         }
     };
 
-    const handleConditionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setCondition(e.target.value);
-    };
+    const handleConditionChange = (value: string) => {
+        setCondition(value);
+      };
 
     const handleConditionBlur = () => {
         try {
@@ -202,8 +202,8 @@ function SaveCarModal() {
         }
     };
 
-    const handleYearChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setYear(e.target.value);
+    const handleYearChange = (value: string) => {
+        setYear(value);
     };
 
     const handleYearBlur = () => {
@@ -228,8 +228,8 @@ function SaveCarModal() {
         }
     };
 
-    const handleFuelTypeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setFuelType(e.target.value);
+    const handleFuelTypeChange = (value: string) => {
+        setFuelType(value);
     };
 
     const handleFuelTypeBlur = () => {
@@ -241,8 +241,8 @@ function SaveCarModal() {
         }
     };
 
-    const handleTransmissionChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setTransmission(e.target.value);
+    const handleTransmissionChange = (value: string) => {
+        setTransmission(value);
     };
 
     const handleTransmissionBlur = () => {
@@ -254,8 +254,8 @@ function SaveCarModal() {
         setTransmissionError(transmission === '');
     };
 
-    const handleDriveTypeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setDriveType(e.target.value);
+    const handleDriveTypeChange = (value: string) => {
+        setDriveType(value);
     };
 
     const handleDriveTypeBlur = () => {
@@ -566,7 +566,7 @@ function SaveCarModal() {
                                 type="select"
                                 name="make"
                                 value={make}
-                                onChange={(e) => setMake(e.target.value)}
+                                onChange={() => setMake(make)}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
                                 inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={brands}
@@ -577,7 +577,7 @@ function SaveCarModal() {
                                 type="select"
                                 name="model"
                                 value={model}
-                                onChange={(e) => setModel(e.target.value)}
+                                onChange={() => setModel(model)}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
                                 inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={models}

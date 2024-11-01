@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Brand, Category } from '../shared/datas';
 import { SelectProps } from './SaveCarModal';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ErrorMessageProps {
   message: string;
@@ -12,8 +13,8 @@ interface InputProps {
   type: string;
   name: string;
   value: string | number | undefined;
-  onBlur?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => void;
+  onBlur?: (name: string) => void;
+  onChange?: (value: string, name: string) => void;
   touched?: boolean;
   error?: boolean;
   placeholder?: string;
@@ -31,12 +32,6 @@ class ErrorMessage extends Component<ErrorMessageProps> {
     highlightedText: 'Oops!',
   };
 
-  /**
-   * Renders an error message with optional highlighted text.
-   * The message is styled to be displayed in red, with a bold font for the highlighted text.
-   * 
-   * @returns A JSX element containing the formatted error message.
-   */
   render() {
     const { message, highlightedText } = this.props;
     return (
@@ -53,40 +48,33 @@ class CustomFormField extends Component<InputProps> {
     isRequired: false,
   };
 
-  /**
-   * Renders a form field based on the provided props. If the field type is 'select',
-   * it renders a dropdown select element with options. Otherwise, it renders a standard
-   * input field. Both field types include a label and optional error message display.
-   * 
-   * Props:
-   * - label: The text label for the form field.
-   * - type: The type of the input (e.g., 'text', 'select').
-   * - name: The name attribute for the input element.
-   * - value: The current value of the input.
-   * - onBlur: Function to call when the input loses focus.
-   * - onChange: Function to call when the input value changes.
-   * - touched: Boolean indicating if the input has been interacted with.
-   * - error: Boolean indicating if there's an error with the input value.
-   * - placeholder: Placeholder text for the input.
-   * - hasAddon: Boolean indicating if the input includes addon content.
-   * - addonContent: Content to display as an addon inside the input field.
-   * - inputClassName: CSS class for styling the input element.
-   * - labelClassName: CSS class for styling the label element.
-   * - isRequired: Boolean indicating if the input is required.
-   * - errorMessage: Message to display when there's an error.
-   * - options: Array of options for the select field type.
-   * 
-   * Returns a JSX element representing the form field, including any necessary
-   * error messages, required indicators, and placeholder text.
-   */
+  handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { onChange, name } = this.props;
+    if (onChange) {
+      onChange(e.target.value, name);
+    }
+  };
+
+  handleSelectChange = (selectedValue: string) => {
+    const { onChange, name } = this.props;
+    if (onChange) {
+      onChange(selectedValue, name);
+    }
+  };
+
+  handleBlur = () => {
+    const { onBlur, name } = this.props;
+    if (onBlur) {
+      onBlur(name);
+    }
+  };
+
   render() {
     const {
       label,
       type,
       name,
       value,
-      onBlur,
-      onChange,
       touched,
       error,
       placeholder,
@@ -100,38 +88,47 @@ class CustomFormField extends Component<InputProps> {
     } = this.props;
 
     if (type === 'select') {
-      const focusSelectTrigger = () => {
-        const triggerElement = document.getElementById(`trigger-${this.props.name}`);
-        if (triggerElement) {
-          triggerElement.click();
-        }
-      };
+      const selectId = `select-${name}`;
 
       return (
-        <>
-          <label htmlFor={`trigger-${name}`} className={labelClassName} onClick={focusSelectTrigger}>
+        <div className="form-field">
+          <label htmlFor={selectId} className={labelClassName}>
             {label}
             {isRequired && <span style={{ color: 'red' }}>&nbsp;*</span>}
           </label>
-        
-          <select
-            id={`trigger-${name}`}
+          <Select 
             name={name}
-            value={value || ''}
-            onChange={onChange}
-            onBlur={onBlur}
-            className={`${inputClassName} max-h-[10rem] overflow-y-auto`}
-            required={isRequired}
+            value={value?.toString()}
+            onValueChange={this.handleSelectChange}
+            onOpenChange={(open: unknown) => {
+              if (!open) {
+                this.handleBlur();
+              }
+            }}
           >
-            <option value="">{placeholder}</option>
-            {options?.map((option) => (
-              <option key={option.id} value={option.name}>
-                {option.name}
-              </option>
-            ))}
-          </select>
+            <SelectTrigger 
+              id={selectId}
+              className={`${inputClassName} h-42`}
+              aria-required={isRequired}
+            >
+              <SelectValue placeholder={placeholder} />
+            </SelectTrigger>
+            <SelectContent 
+              position="popper"
+              className="max-h-[10rem] overflow-y-auto"
+            >
+              {options?.map((option) => (
+                <SelectItem 
+                  key={option.id} 
+                  value={option.name}
+                >
+                  {option.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           {touched && error && errorMessage && <ErrorMessage message={errorMessage} />}
-        </>
+        </div>
       );
     }
 
@@ -150,9 +147,10 @@ class CustomFormField extends Component<InputProps> {
           <input
             type={type}
             id={name}
+            name={name}
             value={value}
-            onChange={onChange}
-            onBlur={onBlur}
+            onChange={this.handleInputChange}
+            onBlur={this.handleBlur}
             className={inputClassName}
             placeholder={placeholder}
             required={isRequired}
