@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Car, convertToXAF, formatPrice, getCarsFromLocalStorage } from "../shared/datas";
+import { Car, convertToXAF, formatPrice, getCarsFromLocalStorage } from "../../data/datas";
 import { useTranslation } from "react-i18next";
 import PaginationListing from "./PaginationListing";
 import { GiGearStickPattern } from "react-icons/gi";

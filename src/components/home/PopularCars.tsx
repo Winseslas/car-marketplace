@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import { Car, getCarsFromLocalStorage } from '../shared/datas';
+import { Car, getCarsFromLocalStorage } from '../../data/datas';
 import CardItem from './CardItem';
 import Autoplay from "embla-carousel-autoplay"
 

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Car, convertToXAF, formatPrice, getCarsFromLocalStorage } from "../shared/datas";
+import { Car, convertToXAF, formatPrice, getCarsFromLocalStorage } from "../../data/datas";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { throttle } from 'lodash';
 import PaginationListing from "./PaginationListing";
-import ConfirmModal from "./ConfirmModal";
+import ConfirmModal from "../modals/ConfirmModal";
 
 /**
  * Component that displays a table with all the cars in the database,

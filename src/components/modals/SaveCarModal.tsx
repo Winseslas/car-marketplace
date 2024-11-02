@@ -1,11 +1,10 @@
 
 import { PlusIcon } from '@radix-ui/react-icons';
 import React, { useEffect, useState } from 'react';
-import { Button } from './ui/button';
-import { Car, getCarsFromLocalStorage, readAllCategoriesToJson, Category, Brand } from '../shared/datas';
-import CustomFormField from './CustomFormField';
+import { Button } from '../ui/button';
+import { Car, getCarsFromLocalStorage, readAllCategoriesToJson, Category, Brand } from '../../data/datas';
+import CustomFormField from './../../components/common/Form/CustomFormField';
 import { useTranslation } from "react-i18next";
-
 
 export interface SelectProps {
     id: number;
@@ -191,7 +190,7 @@ function SaveCarModal() {
 
     const handleConditionChange = (value: string) => {
         setCondition(value);
-      };
+    };
 
     const handleConditionBlur = () => {
         try {
@@ -267,6 +266,28 @@ function SaveCarModal() {
         setDriveTypeError(driveType === '');
     };
 
+    const handleMakeChange = (value: string) => {
+        setMake(value);
+    }
+
+    const handleModelChange = (value: string) => {
+        setModel(value);
+    }
+
+    const [selectedFeatures, setSelectedFeatures] = useState<string[]>([]);
+
+    const handleCheckboxChange = (event: { target: { id: string; checked: boolean } }) => {
+        const { id, checked } = event.target;
+        setSelectedFeatures((prevFeatures) => {
+            if (checked) {
+                return [...prevFeatures, id];
+            } else {
+                return prevFeatures.filter((feature) => feature !== id);
+            }
+        });
+        // console.log('selectedFeatures:', selectedFeatures);
+    };
+
     /**
      * Given a form input value, error status, and touched status, returns a tailwindcss class string that
      * represents the input's validity status. If the input is untouched or empty, returns a grayish class.
@@ -307,8 +328,33 @@ function SaveCarModal() {
     };
 
     const handleSubmit = () => {
+        if (!isFormValid()) {
+            console.error('Le formulaire n\'est pas valide. Veuillez vérifier les champs.');
+            return;
+        }
         // Logique de soumission ici
+        const carData = {
+            username,
+            price: parseFloat(price),
+            sellingPrice: parseFloat(sellingPrice),
+            category,
+            condition,
+            year: parseInt(year, 10),
+            driveType,
+            transmission,
+            fuelType,
+            make,
+            model,
+            description,
+            selectedFeatures,
+        };
         // Par exemple, vous pouvez vérifier si tous les champs sont valides avant de soumettre
+
+        // Exemple de soumission des données (remplacez par votre logique)
+        console.log('Soumission des données de la voiture:', carData);
+
+        // Réinitialiser le formulaire après la soumission
+        resetForm();
     };
 
     /**
@@ -340,6 +386,7 @@ function SaveCarModal() {
         setTransmissionTouched(false);
         setFuelTypeTouched(false);
         setDescriptionTouched(false);
+        setSelectedFeatures([]);
     };
 
     /**
@@ -360,7 +407,7 @@ function SaveCarModal() {
         }
     };
 
-    const hasFormBeenTouched =
+    const hasFormBeenTouched: boolean =
         username !== '' ||
         price !== '' ||
         sellingPrice !== '' ||
@@ -372,7 +419,8 @@ function SaveCarModal() {
         fuelType !== '' ||
         make !== '' ||
         model !== '' ||
-        description !== '';
+        description !== '' ||
+        selectedFeatures.length > 0;
 
     interface AccordionItem {
         id: number;
@@ -566,7 +614,7 @@ function SaveCarModal() {
                                 type="select"
                                 name="make"
                                 value={make}
-                                onChange={() => setMake(make)}
+                                onChange={handleMakeChange}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
                                 inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={brands}
@@ -577,7 +625,7 @@ function SaveCarModal() {
                                 type="select"
                                 name="model"
                                 value={model}
-                                onChange={() => setModel(model)}
+                                onChange={handleModelChange}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.model')}
                                 inputClassName="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 options={models}
@@ -596,6 +644,8 @@ function SaveCarModal() {
                                                 type="checkbox"
                                                 value=""
                                                 className="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                                onChange={(event) => handleCheckboxChange(event)}
+                                                checked={selectedFeatures.includes(tech.id)}
                                             />
                                             <label htmlFor={tech.id} className="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{tech.name}</label>
                                         </div>
@@ -610,7 +660,7 @@ function SaveCarModal() {
             id: 3,
             buttonClassName: "flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3",
             accordionHeading: `${t('pages.profilePage.createCar.carForm.descriptionSection')}`,
-            divClassName: "p-5 border border-t-0 border-gray-200 dark:border-gray-700",
+            divClassName: "p-5 border border-t-2 border-gray-200 dark:border-gray-700",
             accordionBody: (
                 <>
                     <div className='flex items-start space-x-4'>
@@ -624,7 +674,7 @@ function SaveCarModal() {
                                 value={description}
                                 onChange={handleDescriptionChange}
                                 onBlur={handleDescriptionBlur}
-                                className={`${getInputClass(description, descriptionError, descriptionTouched)} block w-full px-0 text-sm text-gray-800 rounded-md bg-white border-1 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 max-h-14 min-h-14`}
+                                className={`${getInputClass(description, descriptionError, descriptionTouched)} block w-full text-sm text-gray-800 rounded-md bg-white border-1 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400 max-h-14 min-h-14`}
                                 placeholder={t('pages.profilePage.createCar.carForm.placeholders.description')}
                                 required
                             />
@@ -638,7 +688,7 @@ function SaveCarModal() {
     ];
 
     const [openIndex, setOpenIndex] = useState<number | null>(1);
-    
+
     /**
      * Toggle the open state of the accordion at the given index.
      *
@@ -726,7 +776,7 @@ function SaveCarModal() {
                                     {t('pages.profilePage.createCar.carForm.acceptButton')}
                                 </button>
                                 <button onClick={handleReset} type="button" className="py-2.5 px-5 ms-3 text-sm font-medium text-white focus:outline-none bg-red-600 rounded-lg border border-red-200 hover:border-red-200 hover:bg-red-600 hover:text-white focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                                    {t('pages.profilePage.createCar.carForm.declineButton')}
+                                    {hasFormBeenTouched ? t('pages.profilePage.createCar.carForm.resetButton') : t('pages.profilePage.createCar.carForm.declineButton')}
                                 </button>
                             </div>
                         </div>

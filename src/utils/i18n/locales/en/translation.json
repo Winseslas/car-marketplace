@@ -129,6 +129,7 @@
                     "description": "Description",
                     "acceptButton": "I accept",
                     "declineButton": "Decline",
+                    "resetButton": "Reset",
                     "placeholders": {
                         "carName": "Car name",
                         "originalPrice": "Original price",

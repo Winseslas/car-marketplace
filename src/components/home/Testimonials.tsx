@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { CiStar, CiUser } from 'react-icons/ci'
-import { readAllTestimonialsToJson, Testimonial } from '../shared/datas';
+import { readAllTestimonialsToJson, Testimonial } from '../../data/datas';
 import { useTranslation } from 'react-i18next';
 
 export default function Testimonials() {

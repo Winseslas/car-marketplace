@@ -128,7 +128,8 @@
                     "descriptionSection": "Description",
                     "description": "Description",
                     "acceptButton": "J'accepte",
-                    "declineButton": "Refuser",
+                    "declineButton": "Décliner",
+                    "resetButton": "Réinitialiser",
                     "placeholders": {
                         "carName": "Nom de la voiture",
                         "originalPrice": "Prix d'origine",

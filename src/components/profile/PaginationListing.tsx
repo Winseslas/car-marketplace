@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Car, getCarsFromLocalStorage } from "../shared/datas";
+import { Car, getCarsFromLocalStorage } from "../../data/datas";
 import { useTranslation } from "react-i18next";
 import { throttle } from 'lodash';
 

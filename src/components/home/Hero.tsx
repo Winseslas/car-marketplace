@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Button } from './ui/button';
+import { Button } from './../ui/button';
 import Search from './Search';
 import heroImage from '/hero-section-background-image-blue.png';
 import { useUser } from '@clerk/clerk-react';

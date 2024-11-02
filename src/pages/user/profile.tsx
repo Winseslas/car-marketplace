@@ -1,9 +1,9 @@
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import Breadcrumbs from "../../components/Breadcrumbs"; // Import Breadcrumbs
+import Header from "../../components/common/Header";
+import Footer from "../../components/common/Footer";
+import Breadcrumbs from "../../components/common/Breadcrumbs"; // Import Breadcrumbs
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import SaveCarModal from "../../components/SaveCarModal";
+import SaveCarModal from "../../components/modals/SaveCarModal";
 export default function Profile() {
   const { t } = useTranslation();
   const location = useLocation();

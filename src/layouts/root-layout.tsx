@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { ClerkLoaded, ClerkProvider } from '@clerk/clerk-react';
 import { frFR, enUS } from '@clerk/localizations';
-import { LanguageProvider, LanguageContext } from '../components/LanguageContext';
+import { LanguageProvider, LanguageContext } from '../components/common/LanguageContext';
 import './../App.css';
 
 const PUBLISHABLE_KEY: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;

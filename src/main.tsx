@@ -14,16 +14,15 @@ import DashboardLayout from './layouts/dashboard-layout';
 // Import the components
 import IndexPage from './pages/index';
 import ContactPage from './pages/contact';
-import DashboardPage from './pages/dashboard';
-import InvoicesPage from './pages/dashboard.invoices';
+import DashboardPage from './pages/dashboard/dashboard';
+import InvoicesPage from './pages/dashboard/invoices';
 import SignInPage from './pages/authentication/sign-in';
 import SignUpPage from './pages/authentication/sign-up';
 import ForgotPasswordPage from "./pages/authentication/forgot-password";
 import Profile from './pages/user/profile';
-import MyListing from "./components/MyListing";
-import Favorites from "./components/Favorites";
-import Billing from "./components/Billing";
-// import CreateCar from "./components/CreateCar";
+import MyListing from "./components/profile/MyListing";
+import Favorites from "./components/profile/Favorites";
+import Billing from "./components/profile/Billing";
 
 type RootComponentProps = object
 
@@ -68,7 +67,6 @@ class RootComponent extends Component<object, RootComponentState> {
                   </div>)
                 },
                 { path: 'billing', element: <Billing /> },
-                // { path: 'create-car', element: <CreateCar /> },
               ],
             },
             {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Brand, Category } from '../shared/datas';
-import { SelectProps } from './SaveCarModal';
+import { Brand, Category } from './../../../data/datas';
+import { SelectProps } from './../../modals/SaveCarModal';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface ErrorMessageProps {

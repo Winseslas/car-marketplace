@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
-import GreenCheckIcon from "./GreenCheckIcon";
-import RedCloseIcon from "./RedCloseIcon";
+import GreenCheckIcon from "../common/CustomIcon/GreenCheckIcon";
+import RedCloseIcon from "../common/CustomIcon/RedCloseIcon";
 
 export default function Billing() {
     const { t } = useTranslation();

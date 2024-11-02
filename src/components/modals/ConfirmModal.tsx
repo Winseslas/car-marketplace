@@ -8,6 +8,16 @@ interface ConfirmModalProps {
     cancelText: string;
 }
 
+/**
+ * A modal component that displays a confirmation message to the user.
+ *
+ * @param {string} title The title of the modal.
+ * @param {string} message The message to display in the modal.
+ * @param {string} confirmText The text to display on the confirm button.
+ * @param {string} cancelText The text to display on the cancel button.
+ *
+ * @return {JSX.Element}
+ */
 function ConfirmModal({ 
     title, 
     message, 

@@ -1,10 +1,10 @@
-import Categories from '../components/Categories';
-import Footer from '../components/Footer'
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import InfoSection from '../components/InfoSection';
-import PopularCars from '../components/PopularCars';
-import Testimonials from '../components/Testimonials';
+import Categories from '../components/home/Categories';
+import Footer from '../components/common/Footer'
+import Header from '../components/common/Header';
+import Hero from '../components/home/Hero';
+import InfoSection from '../components/home/InfoSection';
+import PopularCars from '../components/home/PopularCars';
+import Testimonials from '../components/home/Testimonials';
 
 export default function IndexPage() {
   return (

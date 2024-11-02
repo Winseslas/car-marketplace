@@ -1,4 +1,4 @@
-import { Car, convertToXAF, formatPrice } from '../shared/datas';
+import { Car, convertToXAF, formatPrice } from '../../data/datas';
 import { Separator } from '@radix-ui/react-select';
 import { LuFuel } from 'react-icons/lu';
 import { GiGearStickPattern } from 'react-icons/gi';
