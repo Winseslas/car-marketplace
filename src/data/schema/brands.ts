@@ -1,7 +1,7 @@
 import { pgTable, serial, varchar, numeric } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { countries } from './countries';
-import { timestamps } from './columns.helpers';
+import { timestamps } from './common/columns.helpers';
 
 export const brands = pgTable('brands', {
     id: serial('id').primaryKey(),

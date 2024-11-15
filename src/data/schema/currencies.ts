@@ -1,5 +1,5 @@
 import { pgTable, numeric, char, varchar, timestamp, serial } from 'drizzle-orm/pg-core';
-import { timestamps } from './columns.helpers';
+import { timestamps } from './common/columns.helpers';
 
 export const currencies = pgTable('currencies', {
     id: serial('id').primaryKey(),

@@ -1,5 +1,5 @@
 import { numeric, pgTable, serial, varchar } from 'drizzle-orm/pg-core';
-import { timestamps } from './columns.helpers';
+import { timestamps } from './common/columns.helpers';
 import { cities } from './cities';
 import { relations } from 'drizzle-orm';
 

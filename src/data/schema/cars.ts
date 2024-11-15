@@ -1,6 +1,6 @@
 import { pgTable, serial, varchar, numeric, text, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
-import { timestamps } from './columns.helpers';
+import { timestamps } from './common/columns.helpers';
 import { brands } from './brands';
 import { currencies } from './currencies';
 import { rentalOptions } from './rentaloptions';
