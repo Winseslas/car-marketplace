@@ -1,7 +1,7 @@
 import { pgTable, boolean, integer, varchar, pgEnum } from 'drizzle-orm/pg-core';
 import { timestamps } from './common/columns.helpers';
 
-const transmissionEnum = pgEnum('transmissionEnum', ['Manual', 'Automatic']);
+export const transmissionEnum = pgEnum('transmissionEnum', ['Manual', 'Automatic']);
 
 export const carFeatures = pgTable('carfeatures', {
     id: integer('id').primaryKey(),

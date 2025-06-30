@@ -146,6 +146,37 @@
                     }
                 }
             }
+        },
+        "notFoundPage": {
+            "title": "Page not found",
+            "message": "Sorry, we couldn't find the page you're looking for.",
+            "backToHome": "Back to home"
+        },
+        "aboutPage": {
+            "hero": {
+                "title": "About Us",
+                "subtitle": "DISCOVER, BID, AND WIN - YOUR GATEWAY TO EXCEPTIONAL AUCTION EXPERIENCES!"
+            },
+            "mission": {
+                "title": "Our Mission in the Company",
+                "description": "Our mission is to revolutionize the car auction market by providing a transparent, secure, and user-friendly platform for car enthusiasts worldwide. We are committed to delivering exceptional service and building an exciting community around exceptional vehicles.",
+                "years": "Years",
+                "market": "in the market"
+            },
+            "team": {
+                "title": "The Team Behind the Company"
+            },
+            "partners": {
+                "title": "Our Trusted Partners"
+            },
+            "testimonials": {
+                "title": "Testimonials: What Our Clients Say",
+                "subtitle": "Discover Now",
+                "cta": "Our Services",
+                "quote": {
+                    "title": "A Reliable Platform for Car Enthusiasts"
+                }
+            }
         }
     },
     "components": {

@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, numeric, text, pgEnum } from 'drizzle-orm/pg-core';
+import { pgTable, integer, serial, varchar, numeric, text, pgEnum } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { timestamps } from './common/columns.helpers';
 import { brands } from './brands';
@@ -22,11 +22,11 @@ export const cars = pgTable('cars', {
     price: numeric('price', { precision: 10, scale: 2 }).notNull(),
     sellingPrice: numeric('sellingprice', { precision: 10, scale: 2 }).notNull(),
 
-    brandId: numeric('brand_id').references(() => brands.id).notNull(),
-    currencyId: numeric('currency_id').references(() => currencies.id).notNull(),
-    categoryId: numeric('category_id').references(() => categories.id).notNull(),
-    rentalOptionsId: numeric('rentaloptions_id').references(() => rentalOptions.id),
-    carFeaturesId: numeric('carfeatures_id').references(() => carFeatures.id).notNull(),
+    brandId: integer('brand_id').references(() => brands.id).notNull(),
+    currencyId: integer('currency_id').references(() => currencies.id).notNull(),
+    categoryId: integer('category_id').references(() => categories.id).notNull(),
+    rentalOptionsId: integer('rentaloptions_id').references(() => rentalOptions.id),
+    carFeaturesId: integer('carfeatures_id').references(() => carFeatures.id).notNull(),
     ...timestamps
 });
 

@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CiSearch } from 'react-icons/ci';
-import { Separator } from "@/components/ui/separator";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Separator } from "./../../components/ui/separator";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./../../components/ui/select";
 import { convertToXAF, createFakeCarData, formatPrice, getBrandsFromLocalStorage, getCarsFromLocalStorage } from '../../data/datas';
 import { Car, Brand } from '../../data/datas';
 

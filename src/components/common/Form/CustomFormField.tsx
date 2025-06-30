@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Brand, Category } from './../../../data/datas';
 import { SelectProps } from './../../modals/SaveCarModal';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./../../../components/ui/select";
 
 interface ErrorMessageProps {
   message: string;

@@ -39,10 +39,10 @@ function Footer() {
                                     <h2 className="inline-block text-2xl pb-4 mb-4 border-b-4 border-blue-600">{t('components.footer.company_section_title')}</h2>
                                 </div>
                                 <ul className="leading-8">
-                                    <li> <Link to="/company_about_us/" className="hover:text-blue-400">{t('components.footer.company_about_us')} </Link></li>
+                                    <li> <Link to="/about-us/" className="hover:text-blue-400">{t('components.footer.company_about_us')} </Link></li>
                                     <li> <Link to="/company_terms_conditions/" className="hover:text-blue-400">{t('components.footer.company_terms_conditions')}</Link></li>
                                     <li> <Link to="/company_privacy_policy/" className="hover:text-blue-400">{t('components.footer.company_privacy_policy')}</Link></li>
-                                    <li> <Link to="/company_contact_us/" className="hover:text-blue-400">{t('components.footer.company_contact_us')}</Link></li>
+                                    <li> <Link to="/contact/" className="hover:text-blue-400">{t('components.footer.company_contact_us')}</Link></li>
                                 </ul>
                             </div>
 

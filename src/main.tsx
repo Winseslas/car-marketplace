@@ -23,6 +23,8 @@ import Profile from './pages/user/profile';
 import MyListing from "./components/profile/MyListing";
 import Favorites from "./components/profile/Favorites";
 import Billing from "./components/profile/Billing";
+import NotFoundPage from "./pages/not-found";
+import AboutPage from "./pages/about";
 
 type RootComponentProps = object
 
@@ -44,6 +46,8 @@ class RootComponent extends Component<object, RootComponentState> {
             { path: '/sign-in/*', element: <SignInPage /> },
             { path: '/sign-up/*', element: <SignUpPage /> },
             { path: '/forgot-password/*', element: <ForgotPasswordPage /> },
+            { path: '/about-us', element: <AboutPage /> },
+            { path: '*', element: <NotFoundPage /> },
             {
               path: '/profile/*',
               element: <Profile />,

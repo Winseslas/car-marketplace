@@ -1,4 +1,4 @@
-import { pgTable, numeric, boolean, varchar, serial } from 'drizzle-orm/pg-core';
+import { pgTable, integer, numeric, boolean, varchar, serial } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { timestamps } from './common/columns.helpers';
 import { currencies } from './currencies';
@@ -15,9 +15,9 @@ export const rentalOptions = pgTable('rentaloptions', {
     mileageLimit: numeric('mileagelimit', { precision: 10, scale: 0 }).notNull(),
     extraMileageCharge: numeric('extramileagecharge', { precision: 10, scale: 2 }).notNull(),
 
-    currencyId: numeric('currency_id').references(() => currencies.id).notNull(),
-    dropoffLocationId: numeric('dropoff_location_id').references(() => agencies.id),
-    pickupLocationId: numeric('pickuplocation_id').references(() => agencies.id).notNull(),
+    currencyId: integer('currency_id').references(() => currencies.id).notNull(),
+    dropoffLocationId: integer('dropoff_location_id').references(() => agencies.id),
+    pickupLocationId: integer('pickuplocation_id').references(() => agencies.id).notNull(),
     ...timestamps
 
 });

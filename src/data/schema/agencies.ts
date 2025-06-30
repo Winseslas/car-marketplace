@@ -1,4 +1,4 @@
-import { numeric, pgTable, serial, varchar } from 'drizzle-orm/pg-core';
+import { integer, pgTable, serial, varchar } from 'drizzle-orm/pg-core';
 import { timestamps } from './common/columns.helpers';
 import { cities } from './cities';
 import { relations } from 'drizzle-orm';
@@ -9,7 +9,7 @@ export const agencies = pgTable('agencies', {
     email: varchar('email', { length: 255 }).notNull().unique(),
     contactNumber: varchar('contact_number', { length: 50 }).notNull(),
     
-    cityId: numeric('city_id').references(() => cities.id),
+    cityId: integer('city_id').references(() => cities.id),
     ...timestamps
 });
 

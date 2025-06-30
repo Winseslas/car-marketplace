@@ -3,6 +3,7 @@ import { ClerkLoaded, ClerkProvider } from '@clerk/clerk-react';
 import { frFR, enUS } from '@clerk/localizations';
 import { LanguageProvider, LanguageContext } from '../components/common/LanguageContext';
 import './../App.css';
+import ScrollToTopButton from '../components/common/ScrollToTopButton';
 
 const PUBLISHABLE_KEY: string = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -36,6 +37,7 @@ export default function RootLayout(): JSX.Element {
                   <Outlet />
                 </main>
               </ClerkLoaded>
+              <ScrollToTopButton />
             </ClerkProvider>
           );
         }}

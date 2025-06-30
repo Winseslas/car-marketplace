@@ -43,9 +43,6 @@ export default function Testimonials() {
                                 </p>
                             </blockquote>
                         ))}
-
-
-
                     </div>
                 </div>
             </section>

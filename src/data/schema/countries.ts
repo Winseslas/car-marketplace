@@ -1,4 +1,4 @@
-import { pgTable, numeric, varchar, serial } from 'drizzle-orm/pg-core';
+import { pgTable, integer, numeric, varchar, serial } from 'drizzle-orm/pg-core';
 import { relations } from 'drizzle-orm';
 import { timestamps } from './common/columns.helpers';
 import { currencies } from './currencies';
@@ -11,8 +11,8 @@ export const countries = pgTable('countries', {
     countryCode: varchar('countryCode', { length: 5 }).notNull(),
     phoneCode: numeric('phoneCode', { precision: 10, scale: 0 }).notNull(),
     
-    currencyId: numeric('currency_id').references(() => currencies.id),
-    continentId: numeric('continent_id').references(() => continents.id),
+    currencyId: integer('currency_id').references(() => currencies.id),
+    continentId: integer('continent_id').references(() => continents.id),
     ...timestamps,
 });
 

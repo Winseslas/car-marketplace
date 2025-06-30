@@ -146,6 +146,37 @@
                     }
                 }
             }
+        },
+        "notFoundPage": {
+            "title": "Page non trouvée",
+            "message": "Désolé, nous n'avons pas trouvé la page que vous cherchez.",
+            "backToHome": "Retour à l'accueil"
+        },
+        "aboutPage": {
+            "hero": {
+                "title": "À propos de nous",
+                "subtitle": "DÉCOUVREZ, ENCHÉRISSEZ ET GAGNEZ - VOTRE PORTAIL VERS DES EXPÉRIENCES D'ENCHÈRES EXCEPTIONNELLES !"
+            },
+            "mission": {
+                "title": "Notre mission dans l'entreprise",
+                "description": "Notre mission est de révolutionner le marché des enchères automobiles en offrant une plateforme transparente, sécurisée et facile à utiliser pour les amateurs de voitures du monde entier. Nous nous engageons à fournir un service exceptionnel et à créer une communauté passionnante autour des véhicules d'exception.",
+                "years": "Années",
+                "market": "sur le marché"
+            },
+            "team": {
+                "title": "L'équipe derrière l'entreprise"
+            },
+            "partners": {
+                "title": "Nos partenaires de confiance"
+            },
+            "testimonials": {
+                "title": "Témoignages : ce que disent nos clients",
+                "subtitle": "Découvrez maintenant",
+                "cta": "Nos services",
+                "quote": {
+                    "title": "Une plateforme fiable pour les passionnés d'automobiles"
+                }
+            }
         }
     },
     "components": {
